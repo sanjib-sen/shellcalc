@@ -20,12 +20,7 @@ def get_numbers(string, left, index):
     if left ==0 : str1=""
     str2 = string[right:]
     opr = string[index]
-    print("str1:",str1,"str2:",str2)
-    print("num1:",num1,"num2:",num2)
     result = opera[opr](float(num1),float(num2))
-    print("result:", result)
-    print("final:",str1+str(result)+str2)
-
     right = len(str1+str(result))-2
     return str1+str(result)+str2+" "+str(right)
 
@@ -38,11 +33,9 @@ def main(inp):
                 left = ind
             if op == inpcopy[ind]:
                 index = ind
-                print(left, index, op)
                 ret = get_numbers(inpcopy, left,index).split(" ")
                 inpcopy = ret[0]
                 right =int(ret[1])
-                print(inpcopy,op, right)
                 ind = right
                 continue
             ind+=1
