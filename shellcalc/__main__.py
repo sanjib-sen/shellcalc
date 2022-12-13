@@ -7,6 +7,13 @@ opera = {'/': operator.truediv, '+': operator.add, '-': operator.sub,
          '*': operator.mul, '^': operator.pow, '%': operator.mod}
 
 
+
+
+'''
+TODO: Brackets as []
+TODO: next line input as ans
+'''
+
 def get_numbers(string, left, index):
     num1 = string[left+1:index]
     if left == 0:
@@ -26,27 +33,40 @@ def get_numbers(string, left, index):
     opr = string[index]
     result = opera[opr](float(num1), float(num2))
     right = len(str1+str(result))-2
-    return str1+str(result)+str2+" "+str(right)
+    return str1+str(result)+str2,str(right)
 
 
-def main(inp):
-    inpcopy = inp
+def calculate(inp):
     for op in operators:
-        ind = 0
+        index = 0
         left = 0
-        while ind < len(inpcopy):
-            if inpcopy[ind] in operators and inpcopy[ind] != op:
-                left = ind
-            if op == inpcopy[ind]:
-                index = ind
-                ret = get_numbers(inpcopy, left, index).split(" ")
-                inpcopy = ret[0]
+        while index < len(inp):
+            if inp[index] in operators and inp[index] != op:
+                left = index
+            if op == inp[index]:
+                ret = get_numbers(inp, left, index)
+                inp = ret[0]
                 right = int(ret[1])
-                ind = right
+                index = right
                 continue
-            ind += 1
+            index += 1
         left = 0
-    print(inpcopy)
+    print(inp)
 
 
-main(inp)
+def main():
+    right_bracket=[]
+    left_bracket=[]
+    for i in range(0, len(inp)):
+        if inp[i]=='[':
+            left_bracket.append(i)
+        elif inp[i]==']':
+            right_bracket.append(i)
+    print(left_bracket,right_bracket)
+    right_bracket.sort()
+    left_bracket.sort(reverse=True)
+
+    print(left_bracket, right_bracket)
+
+
+main()
