@@ -1,1 +1,2 @@
-!+[Hello](https://9k0b9.csb.app/)
+# shellcalc
+A command line based calculator made with Python
